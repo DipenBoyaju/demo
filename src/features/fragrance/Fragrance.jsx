@@ -1,16 +1,19 @@
 import { data } from '../../dummy/products'
+import { useNavigate } from 'react-router-dom'
 
 const Fragrance = () => {
+
+  const nav = useNavigate();
 
   const fragrance = data.products.filter(item => item.category === "fragrances");
 
   return (
     <div>
       <h1 className='text-3xl font-bold py-8'>Discover more. <span className='text-gray-400'>Good things are waiting for you</span></h1>
-      <div className='lg:grid lg:grid-cols-4 gap-8'>
+      <div className='lg:grid lg:grid-cols-4 gap-8 cursor-pointer'>
         {
           fragrance.map((item) => (
-            <div className="space-y-4" key={item.id}>
+            <div className="space-y-4" key={item.id} onClick={() => nav(`/product/detail/${item.id}`)}>
               <img src={item.thumbnail} alt="" className='h-[200px] w-full ' />
               <div className="space-y-2">
                 <h2 className='font-bold text-xl'>{item.title}</h2>
